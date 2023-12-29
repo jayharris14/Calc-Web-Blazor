@@ -1,0 +1,49 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>BMI</PageTitle>
+
+<h1>BMI</h1>
+
+<p role="status">BMI: @BMI</p>
+
+Weight:<input id="weight" value="@weightv" type="number" @oninput="OnInputEvent"/>lbs.
+Height:<input id="feet" value="@feetv" type="number" @oninput="OnFeetInputEvent"/>ft.<input id="inches" value="@inchesv" type="number" @oninput="OnInchesInputEvent"/>in.
+<button class="btn btn-primary" @onclick="BMICalculator">Calculate BMI</button>
+
+
+
+
+@code {
+   public int BMI = 0;
+    public Int32 weightv { get; set; }=0;
+    public Int32 feetv { get; set; }=0;
+    public Int32 inchesv { get; set; }=0;
+    public int height;
+    public int feet;
+    public int inches;
+    public int weight;
+    
+    private void OnInputEvent(ChangeEventArgs changeEvent)
+    {
+        weightv = changeEvent.Value;
+    }
+
+    private void OnFeetInputEvent(ChangeEventArgs changeEvent)
+    {
+        feetv = changeEvent.Value;
+    }
+
+    private void OnInchesInputEvent(ChangeEventArgs changeEvent)
+    {
+        inchesv = changeEvent.Value;
+    }
+
+    private void BMICalculator()
+    {
+       Console.WriteLine(weightv);
+       height=(feetv*12)+inchesv;
+       BMI=(weightv/(height*height))*703;
+    }
+}
+
